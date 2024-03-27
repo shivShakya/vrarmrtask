@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="index.css">
+  <style>
+    #app {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 80vw;
+      height: 80vh;
+      background-color: black; 
+      z-index: -2;
+    }
+
+    #loading-bar-container {
+      top: 50%;
+      left: 50%;
+      width: 200px;
+      height: 20px;
+      border: 2px solid #ffffff;
+      margin: 20px;
+    }
+
+  
+    #loading-bar {
+      width: 0%;
+      height: 100%;
+      background-color: #ffffff;
+    }
+
+    #overlay {
+      position: absolute;
+      width: 200px;
+      height: 100px;
+      border: 2px solid gray;
+      z-index: 0;
+      text-align: center;
+      font-size: 50px;
+      color: red;
+      padding: 20px;
+      border-radius: 20px;
+      font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+      margin: 20px;
+    }
+    #overlay:hover{
+          transform: scale(1.1);
+          background-color: red;
+          color: white;
+    }
+
+
+  </style>
+  <title>Vite App</title>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+    <div id="loading-bar-container">
+      <div id="loading-bar"></div>
+    </div>
+    <div id="overlay">
+          Kill <br/> zombiee
+    </div>
+  <script type="module" src="/main.js"></script>
+</body>
+</html>
