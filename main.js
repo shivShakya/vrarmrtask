@@ -1,8 +1,9 @@
 import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader'; 
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'; 
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
+
 
 let hand; 
 let mixer;
@@ -125,7 +126,31 @@ scene.add(upper);
 
 
 
+//punch audio 
+const listener = new THREE.AudioListener();
+camera.add(listener);
+const audioLoader = new THREE.AudioLoader(loadingManager);
+let punch;
 
+audioLoader.load(
+    'punch.mp3',
+    function (buffer) {
+        punch = new THREE.Audio(listener).setBuffer(buffer);
+    },
+    undefined,
+    function (error) {
+        console.error('Error loading audio:', error);
+    }
+);
+
+function punchSound() {
+    if (punch) {
+        punch.play();
+        setTimeout(() => {
+            punch.stop(); 
+        }, 2000);
+    }
+}
 
 //rayscting
 const raycaster = new THREE.Raycaster();
@@ -142,16 +167,19 @@ function onMouseClick(event) {
         const clickedObject = intersects[0].object;
         if (clickedObject === upper && animationActions.length >= 3) {
             animationActions[2].play(); 
+            punchSound();
             setTimeout(() => {
                 animationActions[2].stop(); 
             }, 4000);
         } else if (clickedObject === middle && animationActions.length >= 2) {
             animationActions[1].play(); 
+            punchSound();
             setTimeout(() => {
                 animationActions[1].stop(); 
             }, 4000);
         } else if (clickedObject === lower && animationActions.length >= 1) {
             animationActions[0].play(); 
+            punchSound();
             setTimeout(() => {
                 animationActions[0].stop(); 
             }, 7000);

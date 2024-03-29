@@ -43,19 +43,16 @@
     #overlay {
       position: absolute;
       width: 200px;
-      height: 100px;
       border: 2px solid gray;
       z-index: 0;
       text-align: center;
-      font-size: 50px;
-      color: red;
-      padding: 20px;
+      font-size: 20px;
+      color: rgb(98, 17, 17);
       border-radius: 20px;
       font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
       margin: 20px;
     }
     #overlay:hover{
-          transform: scale(1.1);
           background-color: red;
           color: white;
     }
@@ -72,6 +69,15 @@
     <div id="overlay">
           Kill <br/> zombiee
     </div>
-  <script type="module" src="/main.js"></script>
+  
+    <script type="importmap">
+      {
+          "imports": {
+              "three": "https://threejs.org/build/three.module.js",
+              "three/addons/": "https://threejs.org/examples/jsm/"
+          }
+      }
+      </script>
+  <script type="module" src="main.js"></script>
 </body>
 </html>
